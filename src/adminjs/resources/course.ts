@@ -35,14 +35,15 @@ export const courseResourceOptions: ResourceOptions = {
 export const courseResoureceFeatures: FeatureType[] = [
   uploadFileFeature({
     provider: {
-      local:{
-        bucket: path.join(__dirname, '..', '..', '..', 'public')
-      }
+      local: {
+        bucket: path.join(__dirname, "..", "..", "..", "public"),
+      },
     },
     properties: {
-      key: 'thumbnailUrl',
-      file: 'uploadThumbnail'
+      key: "thumbnailUrl",
+      file: "uploadThumbnail",
     },
-    uploadPath: (record, filename) => `thumbnails/course-${record.get('id')}/${filename}`
-  })
-]
+    uploadPath: (record, filename) =>
+      `thumbnails/course-${record.get("id")}/${filename}`,
+  }),
+];

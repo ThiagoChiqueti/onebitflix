@@ -4,7 +4,7 @@ import { Episodes } from './episodes'
 import { User } from "./User";
 
 //definir associações
-Category.hasMany(Course)//uma categoria tem vários cursos
+Category.hasMany(Course, {as: 'courses'})//uma categoria tem vários cursos
 
 Course.belongsTo(Category)//um curso tem várias categorias
 

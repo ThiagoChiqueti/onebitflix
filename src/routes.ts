@@ -1,13 +1,18 @@
+//Rotas da API
 import express from "express";
 import { categoriesController } from "./controllers/categoriesController";
 import { coursesController } from "./controllers/coursesController";
 
-const router = express.Router()
+const router = express.Router();
 
-router.get('/categories', categoriesController.index)
+router.get("/categories", categoriesController.index);
 
-router.get('/categories/:id', categoriesController.show)
+router.get("/categories/:id", categoriesController.show);
 
-router.get('/courses/:id', coursesController.show)
+//aqui a sequência importa para não ler o 'featured' como um id  
 
-export {router}
+router.get("/courses/featured", coursesController.featured)
+
+router.get("/courses/:id", coursesController.show);
+
+export { router };

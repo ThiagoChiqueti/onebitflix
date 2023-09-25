@@ -8,7 +8,7 @@ Category.hasMany(Course, {as: 'courses'})//uma categoria tem vários cursos
 
 Course.belongsTo(Category)//um curso tem várias categorias
 
-Course.hasMany(Episodes)
+Course.hasMany(Episodes, {as: 'episodes'})
 
 Episodes.belongsTo(Course)
 export {

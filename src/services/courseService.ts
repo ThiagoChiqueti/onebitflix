@@ -1,3 +1,6 @@
+//Métodos de busca no banco de dados
+//Famosas Querys
+import { Op } from "sequelize";
 import { Course } from "../models";
 
 export const courseService = {
@@ -28,8 +31,38 @@ export const courseService = {
         featured: true,
       },
     });
-    const randonFeaturedCourses = featuredCourses.sort(()=> 0.5 - Math.random())
+    const randonFeaturedCourses = featuredCourses.sort(
+      () => 0.5 - Math.random()
+    );
 
-    return randonFeaturedCourses.slice(0, 3)
+    return randonFeaturedCourses.slice(0, 3);
+  },
+
+  getTopTenNewest: async () => {
+    const courses = await Course.findAll({
+      limit: 10,
+      order: [["created_at", "DESC"]],
+    });
+    return courses;
+  },
+
+  findByName: async (name: string, page: number, perPage: number) => {
+    const offset = (page - 1) * perPage;
+    const { count, rows } = await Course.findAndCountAll({
+      attributes: ["id", "name", "synopsis", ["thumbnail_url", "thumbnailUrl"]],
+      where: {
+        name: {
+          [Op.iLike]: `%${name}%`,
+        },
+      },
+      limit: perPage,
+      offset,
+    });
+    return {
+      courses: rows,
+      page,
+      perPage,
+      total: count,
+    };
   },
 };

@@ -9,9 +9,11 @@ router.get("/categories", categoriesController.index);
 
 router.get("/categories/:id", categoriesController.show);
 
-//aqui a sequência importa para não ler o 'featured' como um id  
+//aqui a sequência importa para não ler o 'featured' como um id
 
-router.get("/courses/featured", coursesController.featured)
+router.get("/courses/featured", coursesController.featured);
+router.get("/courses/newest", coursesController.newest);
+router.get("/courses/search", coursesController.search);
 
 router.get("/courses/:id", coursesController.show);
 

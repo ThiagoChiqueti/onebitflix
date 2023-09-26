@@ -33,28 +33,22 @@ export const coursesController = {
   //get/courses/search?name=
 
   search: async (req: Request, res: Response) => {
-    const { name } = req.query
-    const [page, perPage] = getPaginationParams(req.query)
+    const { name } = req.query;
+    const [page, perPage] = getPaginationParams(req.query);
     try {
-
-      if(typeof name !== 'string'){
-        throw new Error('Name param must be of type string')
+      if (typeof name !== "string") {
+        throw new Error("Name param must be of type string");
       }
 
-      const courses = await courseService.findByName(name, page, perPage)
+      const courses = await courseService.findByName(name, page, perPage);
 
-      return res.json(courses)
-      
+      return res.json(courses);
     } catch (error) {
       if (error instanceof Error) {
         return res.status(400).json({ message: error.message });
       }
     }
-
-
   },
-
-
 
   //get/courses/:id
 

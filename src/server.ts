@@ -6,7 +6,11 @@ import { router } from "./routes";
 
 const app = express();
 
+
+
 app.use(express.static("public"));
+
+app.use(express.json())
 
 //app.use(caminho, rotas)
 app.use(adminJS.options.rootPath, adminJSRouter);
@@ -21,3 +25,4 @@ app.listen(PORT, () => {
   });
   console.log(`server started sucessfuly at port ${PORT}`);
 });
+

@@ -7,6 +7,7 @@ import { authController } from "./controllers/authController";
 import { ensureAuth, ensureAuthViaQuery } from "./middlewares/auth";
 import { favoritesController } from "./controllers/favoritesController";
 import { likesController } from "./controllers/likesController";
+import { userController } from "./controllers/usersController";
 
 const router = express.Router();
 
@@ -27,11 +28,16 @@ router.get("/courses/:id", ensureAuth, coursesController.show);
 
 router.get("/episodes/stream", ensureAuthViaQuery, episodesController.stream);
 
+router.get('/episodes/:id/watchTime', ensureAuth, episodesController.getWatchTime)
+router.post('/episodes/:id/watchTime', ensureAuth, episodesController.setWatchTime)
+
 router.get("/favorites", ensureAuth, favoritesController.index);
 router.post("/favorites", ensureAuth, favoritesController.save);
 router.delete("/favorites/:id", ensureAuth, favoritesController.delete);
 
 router.post("/likes", ensureAuth, likesController.save);
 router.delete("/likes/:id", ensureAuth, likesController.delete)
+
+router.get("/users/current/watching", ensureAuth, userController.watching)
 
 export { router };

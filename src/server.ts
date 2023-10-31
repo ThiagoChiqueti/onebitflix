@@ -4,6 +4,8 @@ import { sequelize } from "./database";
 import { adminJS, adminJSRouter } from "./adminjs";
 import { router } from "./routes";
 
+require('dotenv').config()
+
 const app = express();
 
 
@@ -24,5 +26,5 @@ app.listen(PORT, () => {
     console.log("conected");
   });
   console.log(`server started sucessfuly at port ${PORT}`);
-});
+  });
 
